@@ -1,0 +1,69 @@
+@charset "utf-8";
+
+/* 
+	@名称: main
+	@功能: 主体样式
+*/
+#header{
+	height: 50px;
+	background: #F7F7F7;
+	border-bottom: 1px solid #EEE;
+}
+#header h1 {
+	padding:10px;
+	font-size:24px;
+}
+#left-main{
+	width:200px;
+	height: 600px;
+	border-right: 1px solid #EEE;
+}
+.LNav {
+margin: 32px 0 0 6px;
+font-family: 'Trebuchet MS',Helvetica,sans-serif;
+position: absolute;
+width: 150px;
+font-size: 14px;
+color: #666;
+}
+.LNav .lnavwrap {
+margin: 0 0 23px;
+clear: both;
+height: 26px;
+}
+.lNav-S {
+color: #999;
+border-left: 3px solid white;
+padding-left: 21px;
+display: block;
+height: 26px;
+line-height: 26px;
+float: left;
+}
+.lNav-S:hover {
+border-left: 3px solid #ccc;
+}
+
+.lNavTop {
+margin-bottom: 12px;
+}
+.lnavselected {
+border-color: #A10;
+color: black;
+}
+#right-main{
+	width:600px;
+	height: 80px;
+
+}
+#main-header{
+	width:100%;
+	height: 40px;
+	background: #FcFcFc;
+}
+#main-header h1{
+	font-size:18px;
+	line-height: 40px;
+	color: #A10;
+	padding-left: 21px;
+}

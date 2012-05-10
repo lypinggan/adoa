@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>四川省科学城控电科技有限公司::在线办公系统</title>
+	<link rel="stylesheet" href="{{ static_url('css/base.css') }}" />
+	<link rel="stylesheet" href="{{ static_url('css/main.css') }}" />
+	<link rel="icon" href="{{ static_url('favicon.ico') }}" />
+	<script type='text/javascript' src='{{ static_url('js/prototype.js') }}'></script><!--虚拟框架-->
+	<script type='text/javascript' src='{{ static_url('js/goog/base.js') }}'></script>
+<script>
+    goog.require('goog.dom');
+    goog.require('goog.events');
+    goog.require('goog.events.EventType');
+    goog.require('goog.math.Size');
+    goog.require('goog.style');
+
+    goog.require('goog.dom.ViewportSizeMonitor');
+
+</script>
+	<script type='text/javascript' src='{{ static_url('js/jquery.min.js') }}'></script>
+	
+
+</head>
+
+<body class="office-home">
+
+
+
+<div id="header" class="fn-clear">
+
+<h1>四川省科学城控电科技有限公司::办公系统</h1>
+
+</div> <!-- #header -->
+
+<div id="left-main" class="fn-left">
+
+<div class="LNav">
+<div class="lnavwrap"></div>
+<div class="lnavwrap"><a href="javascript:ato('/home')" class="lNav-S">首页</a></div>
+<div class="lnavwrap"><a href="javascript:ato('/todo')" class="lNav-S lnavselected" id="">任务队列</a></div>
+<div class="lnavwrap"><a href="javascript:void(0)" class="lNav-S" id="">项目列表</a></div>
+<div class="lnavwrap"><a href="javascript:ato('/todo')" class="lNav-S" id="">笔记</a></div>
+<div class="lnavwrap"><a href="javascript:void(0)" class="lNav-S" id="">文件交换</a></div>
+
+</div>
+
+
+</div> <!-- #left-main -->
+<div id="right-main" class="fn-right">
+
+
+</div> <!-- #right-main -->
+
+
+
+  <script>
+    // Takes a goog.math.Size object containing the viewport size, and updates
+    // the UI accordingly.
+    function updateUi() {
+		//var re=/(\d+)/gi; 
+		//alert(size.replace(re, "$1 "));
+      $("#right-main").width(document.body.clientWidth-201);
+      $("#left-main").height(document.body.clientHeight-51);
+    }
+
+    // Initialize the layout.
+    updateUi();
+	//updateUi(goog.dom.getViewWidthSize());
+    // Start listening for viewport size changes.
+    var vsm = new goog.dom.ViewportSizeMonitor();
+    goog.events.listen(vsm, goog.events.EventType.RESIZE, function(e) {
+      updateUi();
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+function ato(url) {
+    //$("#right-main").html(url);
+    $("#right-main").load(url,
+		function (responseText, textStatus, XMLHttpRequest){
+		this;//在这里this指向的是当前的DOM对象，即$(".ajax.load")[0]	
+		//alert(responseText);//请求返回的内容
+		//alert(textStatus);//请求状态：success，error
+		//alert(XMLHttpRequest);//XMLHttpRequest对象
+	});
+}    
+    
+/*
+//定义命名空间
+var Bowtech=new Object();
+
+//注册全局的事件监视器.
+Bowtech.EventMonitor = function(){
+    this.listeners = new Object();
+}
+//广播事件
+Bowtech.EventMonitor.prototype.broadcast=function(widgetObj, msg, data){
+    var lst = this.listeners[msg];
+
+    if(lst != null){
+        for(var o in lst){
+            lst[o](widgetObj, data);
+        }
+    }
+}
+//绑定所有的事件. 
+Bowtech.EventMonitor.prototype.subscribe=function(msg, callback){
+    var lst = this.listeners[msg];
+    if (lst) {
+        lst.push(callback);
+    } else {
+        this.listeners[msg] = [callback];
+    }
+}
+//取消事件绑定.
+Bowtech.EventMonitor.prototype.unsubscribe=function(msg, callback){
+    var lst = this.listener[msg];
+    if (lst != null){
+        lst = lst.filter(function(ele, index, arr){return ele!=callback;});
+    }
+}
+
+// Page scope event-monitor obj.
+var event_monitor = new Bowtech.EventMonitor();
+//对于所有 class="j a_xxx yyy" id="xxx-123"的元素执行事件绑定, xxx-123部分用来获取元素的ID，比如一个帖子的ID,
+// a_xxx  后面的部
+//分用来标识应用如 vote / review / blog 等.
+//绑定的事件就是 :  Bowtech.init_vote / Bowtech.init_blog 等.
+function load_event_monitor(root) {
+    var re = /a_(\w+)/; //正则表达式获取ID.
+    var fns = {};
+    $(".j", root).each(function(i) {
+        var m = re.exec(this.className);
+        if (m) {
+            var f = fns[m[1]];
+            if (!f) { //如果事件处理函数不存在则创建函数对象.
+                f = eval("Bowtech.a_"+m[1]); 
+                fns[m[1]] = f;//调用绑定函数.
+            }
+            f && f(this);
+        }
+    });
+}
+//在文档加载完毕后将执行的方法(参见jquery文档)
+//一般来说文档加载的时候应该绑定所有的事件, 但是有一种情况例外.
+//比如 通过Ajax方法取回来的内容里面还含有动作按钮的，这时需要针对这部分功能执行绑定.
+//需要手动调用 load_event_monitor(element);  方法.
+$(function() {
+    load_event_monitor(document);
+});
+
+//注意这里的o对象是一个html 元素而非是一个jquery对象，所以在调用它的方法时应该使用$(o)函数
+//把它转化为jquery对象.
+Bowtech.a_forder = function(o) {
+	var eid = $(o).attr("id").split("-")[1];
+    var fo = $("#f-"+eid);
+    var unfo = $("#unf-"+eid);
+    
+    fo.click(function() {
+       $(o).hide();
+       unfo.show();
+       fo.hide();
+    });
+    unfo.click(function() {
+        $(o).show();
+        fo.show();
+        unfo.hide();
+    });
+	$("#right-main").html("ssss");
+
+	
+
+}
+
+
+jQuery.fn.extend({
+    set_caret: function(){
+        if(!$.browser.msie) return;
+        var initSetCaret = function(){this.caretPos = document.selection.createRange().duplicate()};
+        this.click(initSetCaret).select(initSetCaret).keyup(initSetCaret);
+    }, 
+    insert_caret:function(textFeildValue){
+        var textObj = this[0];
+        if(document.all && textObj.createTextRange && textObj.caretPos){
+            var caretPos=textObj.caretPos;
+            caretPos.text = caretPos.text.charAt(caretPos.text.length-1) == '' ? textFeildValue+'' : textFeildValue;
+        } else if(textObj.setSelectionRange){
+            var rangeStart=textObj.selectionStart;
+            var rangeEnd=textObj.selectionEnd;
+            var tempStr1=textObj.value.substring(0,rangeStart);
+            var tempStr2=textObj.value.substring(rangeEnd);
+            textObj.value=tempStr1+textFeildValue+tempStr2;
+            textObj.focus();
+            var len=textFeildValue.length;
+            textObj.setSelectionRange(rangeStart+len,rangeStart+len);
+            textObj.blur();
+        } else {
+            textObj.value+=textFeildValue;
+        }
+    }
+})
+*/
+  </script>
+</body>
+
+</html>
+
+
