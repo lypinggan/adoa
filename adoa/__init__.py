@@ -3,7 +3,7 @@
 """
     adoa Application
     ~~~~~~~~~~~
-    :author: laoqiu.com@gmail.com
+    :author: lypinggan@163.com
 """
 import os
 import redis

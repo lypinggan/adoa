@@ -9,9 +9,9 @@ import tornado.options
 
 from tornado.options import define, options 
 
-from pypress import Application
-from pypress.models import *
-from pypress.database import db
+from adoa import Application
+from adoa.models import *
+from adoa.database import db
 
 define("cmd", default='runserver', 
         metavar="runserver|createall|dropall|createcode",
