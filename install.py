@@ -1,0 +1,7 @@
+easy_install tornado
+easy_install redis
+easy_install markdown
+easy_install pygments
+easy_install wtforms
+easy_install sqlalchemy
+easy_install mysql-python
