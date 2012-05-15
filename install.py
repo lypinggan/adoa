@@ -5,3 +5,4 @@ easy_install pygments
 easy_install wtforms
 easy_install sqlalchemy
 easy_install mysql-python
+easy_install PIL

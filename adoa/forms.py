@@ -176,4 +176,3 @@ def create_forms():
         _forms[locale] = FormWrapper
 
     return _forms
-

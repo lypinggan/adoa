@@ -1,6 +1,142 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>欢迎登陆科学城控电办公系统</title>
+  <link rel="stylesheet" href="{{ static_url('css/base.css') }}" />
+  <style type="text/css" charset="utf-8">
+    p{margin-bottom:15px;}
+    h3{font-size:20px;}
+    .sl-hvalign{
+    	display:table;
+    	overflow:hidden;
+    	margin:0 auto;
+    	height: 100%;
+    	*position:relative;
+    }
+    
+    .sl-hvalign-cnt{
+    	display:table-cell;
+    	vertical-align: middle;
+    	*position:absolute;
+    	top:50%;
+    }
+    
+    .sl-hvalign-cnt-inner{
+    	*position:relative;
+    	*top:-50%;
+    }
+    .sl-shadow{
+    
+    	/* modern web browsers */
+    	-moz-box-shadow:1px 3px 12px #bbb;
+    	-webkit-box-shadow:1px 3px 12px #bbb;
+    	box-shadow:1px 3px 12px #bbb;
+    
+    	/* 一定要设置background, 不然 ie 会显示在字体上 */
+    	background: #fff;
+    
+    	/* gte=ie8 */
+    	-ms-filter:"progid:DXImageTransform.Microsoft.Glow(color=#aaaaaa,strength=3) progid:DXImageTransform.Microsoft.Shadow(color=#eeeeee,direction=0,strength=6) progid:DXImageTransform.Microsoft.Shadow(color=#dddddd,direction=90,strength=10) progid:DXImageTransform.Microsoft.Shadow(color=#dddddd,direction=180,strength=6) progid:DXImageTransform.Microsoft.Shadow(color=#eeeeee,direction=270,strength=6)";
+    
+    	/* lte=ie7 */
+    	*filter:
+        progid:DXImageTransform.Microsoft.Shadow(color=#eeeeee,direction=0,strength=7)
+        progid:DXImageTransform.Microsoft.Shadow(color=#dddddd,direction=90,strength=10)
+        progid:DXImageTransform.Microsoft.Shadow(color=#dddddd,direction=180,strength=10)
+        progid:DXImageTransform.Microsoft.Shadow(color=#eeeeee,direction=270,strength=7);
+    }
+    .sl-rc{
+      display:inline-block;vertical-align: middle;
+      border-left:1px solid #ddd;border-right:1px solid #ddd;  /* 可重设 */
+    }
+    
+    /*
+      不要直接给 BOTTON | INPUT[type=submit[button]] 添加边框
+      这会引发 IE 的 1px 的黑边 bug
+      Note: 一般不要把 input 作为.sl-rc-cnt 层
+     */
+    .sl-rc-cnt{
+      float:left;position: relative;
+      border-top: 1px solid #ddd;border-bottom:1px solid #ddd; /* 可重设 */
+      margin:-1px 0;
+    }
+    
+    /* HACK for ie6 7 */
+    div.sl-rc, p.sl-rc, h2.sl-rc, h3.sl-rc, h4.sl-rc, h5.sl-rc, h6.sl-rc, ul.sl-rc, ol.sl-rc{
+      *display: inline;
+    }
+    
+    /* 鼠标经过 */
+    .sl-rc-hover, .sl-rc-hover .sl-rc-cnt, .sl-rc:hover, .sl-rc:hover .sl-rc-cnt{
+      border-color: #aaa; /* 可重设 */
+      text-decoration: none;
+    }
+    
+    .wrap{height: 200px;position: relative;border:1px solid #ddd;margin-bottom: 25px;}
+    .wrap-bg{background: url(./alipay_logo.gif) no-repeat center center;}
+    .sl-hv-align{position:absolute;left:50%;top:50%;width:200px;height:60px;line-height:60px;text-align:center;vertical-align:middle;margin-left:-100px;margin-top: -30px;background: #f30;color:#fff;}
 
-<div id="login-box" class="form">
+    table{width:100%;height:200px;margin-bottom: 15px;}
+    tabletd{text-align: center;vertical-align: middle;border:1px dotted #a3a3a3;}
+    .welcome{margin:10px auto 10px auto;text-align: center;}
+    .fi{margin:10px 20px 10px 20px;font-size: 16px;line-height:40px;}
+   </style>
+</head>
 
-    <div class="clear"></div>
-</div>
+<body>
 
+<div id="wrapper">
+  
+  <div style="height:500px;width:100%;">
+
+      <div class="sl-hvalign" style="width:320px;">
+        <div class="sl-hvalign-cnt">
+          <div class="sl-hvalign-cnt-inner  sl-rc-cnt" style="height:200px;width:298px;background: #FBFBFB;border:1px solid #ddd">
+            <h3 class="welcome">欢迎登陆科学城控电办公系统</h3>
+            <div>
+             <span class="fi">用户名: <input type="text" placeholder="username" size="20"></span>
+             <span class="fi">密&nbsp;&nbsp;&nbsp;码: <input type="password" size="20"/></span>
+            
+            </div>
+        </div>
+        </div>
+      </div> <!-- .sl-hvalign -->
+
+  </div>
+
+</div><!-- #wrapper -->
+<script>
+var doc = document,
+    inputs = doc.getElementsByTagName('input'),
+    supportPlaceholder = 'placeholder' in doc.createElement('input'),
+    placeholder = function(input){
+        var text = input.getAttribute('placeholder'),
+            defaultValue = input.defaultValue;
+
+        input.value = text;
+        input.onfocus = function(){
+            if(input.value === defaultValue || input.value === text){
+                this.value = '';
+            }
+        }
+        input.onblur = function(){
+            if(input.value === ''){
+                this.value = text;
+            }
+        }
+    };
+
+if(!supportPlaceholder){
+    for(var i = 0, len = inputs.length; i < len; i++){
+        var input = inputs[i], text = input.getAttribute('placeholder');
+        if(input.type === 'text' && text){
+            placeholder(input);
+        }
+    }
+}
+
+</script>
+
+</body>
+</html>
